@@ -1,12 +1,14 @@
 {
-  "name": "gatsby-starter-shopify",
+  "name": "mirko-ecommerce",
   "version": "1.0.0",
   "private": true,
-  "description": "A Gatsby starter using the latest Shopify plugin showcasing a store with product overview, individual product pages, and a cart.",
+  "description": "Ecommerce built from gatsby shopify starter",
   "author": "LekoArts <hello@lekoarts.de>",
   "license": "0BSD",
   "keywords": [
     "gatsby",
+    "mirko",
+    "enzo iacchetti",
     "shopify",
     "starter",
     "ecommerce",

@@ -1,9 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { Layout } from "../../components/layout"
-import { ProductListing } from "../../components/product-listing"
-import { Seo } from "../../components/seo"
-import { MoreButton } from "../../components/more-button"
+import { Layout, Seo, MoreButton, ProductListing } from "../../components"
 import { title } from "./index.module.css"
 
 export default function Products({ data: { products } }) {

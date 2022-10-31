@@ -1,8 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { Layout } from "../components/layout"
-import { ProductListing } from "../components/product-listing"
-import { Seo } from "../components/seo"
+import { Layout, ProductListing, Seo } from "../components"
 import {
   container,
   intro,
@@ -20,7 +18,7 @@ export const query = graphql`
     }
   }
 `
-function Hero (props) {
+function Hero(props) {
   return (
     <div className={container}>
       <h1 className={intro}>Welcome to the GatsbyJS + Shopify Demo Store.</h1>

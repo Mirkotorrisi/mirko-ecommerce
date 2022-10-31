@@ -1,13 +1,10 @@
-import * as React from "react"
+import React, { useContext, useState, useCallback, useEffect } from "react"
 import { graphql, Link } from "gatsby"
-import { Layout } from "../../../components/layout"
+import { Layout, AddToCart, NumericInput, Seo } from "../../../components"
 import isEqual from "lodash.isequal"
 import { GatsbyImage, getSrc } from "gatsby-plugin-image"
 import { StoreContext } from "../../../context/store-context"
-import { AddToCart } from "../../../components/add-to-cart"
-import { NumericInput } from "../../../components/numeric-input"
 import { formatPrice } from "../../../utils/format-price"
-import { Seo } from "../../../components/seo"
 import { CgChevronRight as ChevronIcon } from "react-icons/cg"
 import {
   productBox,
@@ -39,19 +36,17 @@ export default function Product({ data: { product, suggestions } }) {
     description,
     images,
   } = product
-  const { client } = React.useContext(StoreContext)
+  const { client } = useContext(StoreContext)
 
-  const [variant, setVariant] = React.useState({ ...initialVariant })
-  const [quantity, setQuantity] = React.useState(1)
+  const [variant, setVariant] = useState({ ...initialVariant })
+  const [quantity, setQuantity] = useState(1)
 
   const productVariant =
     client.product.helpers.variantForOptions(product, variant) || variant
 
-  const [available, setAvailable] = React.useState(
-    productVariant.availableForSale
-  )
+  const [available, setAvailable] = useState(productVariant.availableForSale)
 
-  const checkAvailablity = React.useCallback(
+  const checkAvailablity = useCallback(
     (productId) => {
       client.product.fetch(productId).then((fetchedProduct) => {
         const result =
@@ -88,7 +83,7 @@ export default function Product({ data: { product, suggestions } }) {
     setVariant({ ...selectedVariant })
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     checkAvailablity(product.storefrontId)
   }, [productVariant.storefrontId, checkAvailablity, product.storefrontId])
 
@@ -227,7 +222,7 @@ export const Head = ({ data: { product } }) => {
 }
 
 export const query = graphql`
-  query($id: String!, $productType: String!) {
+  query ($id: String!, $productType: String!) {
     product: shopifyProduct(id: { eq: $id }) {
       title
       description

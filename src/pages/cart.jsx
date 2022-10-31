@@ -1,8 +1,7 @@
-import * as React from "react"
+import React, { useContext } from "react"
 import { Link } from "gatsby"
-import { Layout } from "../components/layout"
+import { Layout, LineItem } from "../components"
 import { StoreContext } from "../context/store-context"
-import { LineItem } from "../components/line-item"
 import { formatPrice } from "../utils/format-price"
 import {
   table,
@@ -23,7 +22,7 @@ import {
 import { Seo } from "../components/seo"
 
 export default function CartPage() {
-  const { checkout, loading } = React.useContext(StoreContext)
+  const { checkout, loading } = useContext(StoreContext)
   const emptyCart = checkout.lineItems.length === 0
 
   const handleCheckout = () => {

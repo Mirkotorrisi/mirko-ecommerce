@@ -2,13 +2,13 @@ require("dotenv").config()
 
 module.exports = {
   siteMetadata: {
-    siteTitle: "gatsby-starter-shopify",
-    siteTitleDefault: "gatsby-starter-shopify by @GatsbyJS",
-    siteUrl: "https://shopify-demo.gatsbyjs.com",
+    siteTitle: "Mirko Ecommerce",
+    siteTitleDefault: "Mirko Ecommerce",
+    siteUrl: "https://mirkoecommerce.com",
     siteDescription:
-      "A Gatsby starter using the latest Shopify plugin showcasing a store with product overview, individual product pages, and a cart.",
-    siteImage: "/default-og-image.jpg",
-    twitter: "@gatsbyjs",
+      "Ezio Greggio, Enzo Iacchetti e tanti altri. Acquista ora le tue copie digitali di questi grandi personaggi!!",
+    siteImage: "/ezio1.jpg",
+    twitter: "@mirkoecommerce",
   },
   flags: {
     FAST_DEV: true,

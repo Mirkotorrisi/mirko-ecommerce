@@ -1,19 +1,16 @@
-import * as React from "react"
+import React, { useCallback, useState, useMemo, useRef, useEffect } from "react"
 import { graphql } from "gatsby"
 import slugify from "@sindresorhus/slugify"
 import debounce from "debounce"
 import { CgChevronRight, CgChevronLeft } from "react-icons/cg"
-import { Layout } from "../components/layout"
 import CrossIcon from "../icons/cross"
 import SortIcon from "../icons/sort"
 import FilterIcon from "../icons/filter"
 import SearchIcon from "../icons/search"
-import { ProductCard } from "../components/product-card"
+import { ProductCard, Progress, Filters, Layout } from "../components"
 import { useProductSearch } from "../utils/hooks"
 import { getValuesFromQuery } from "../utils/search"
 import { getCurrencySymbol } from "../utils/format-price"
-import { Spinner } from "../components/progress"
-import { Filters } from "../components/filters"
 import { SearchProvider } from "../context/search-provider"
 import {
   visuallyHidden,
@@ -78,15 +75,15 @@ function SearchPage({
   // These default values come from the page query string
   const queryParams = getValuesFromQuery(location.search || serverData.query)
 
-  const [filters, setFilters] = React.useState(queryParams)
+  const [filters, setFilters] = useState(queryParams)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const initialFilters = React.useMemo(() => queryParams, [])
-  const [sortKey, setSortKey] = React.useState(queryParams.sortKey)
+  const initialFilters = useMemo(() => queryParams, [])
+  const [sortKey, setSortKey] = useState(queryParams.sortKey)
   // We clear the hash when searching, we want to make sure the next page will be fetched due the #more hash.
-  const shouldLoadNextPage = React.useRef(false)
+  const shouldLoadNextPage = useRef(false)
 
   // This modal is only used on mobile
-  const [showModal, setShowModal] = React.useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   const {
     products,
@@ -111,7 +108,7 @@ function SearchPage({
   )
 
   // Scroll up when navigating
-  React.useEffect(() => {
+  useEffect(() => {
     if (!showModal) {
       window.scrollTo({
         top: 0,
@@ -123,7 +120,7 @@ function SearchPage({
   }, [products, showModal])
 
   // Stop page from scrolling when modal is visible
-  React.useEffect(() => {
+  useEffect(() => {
     if (showModal) {
       document.documentElement.style.overflow = "hidden"
     } else {
@@ -132,7 +129,7 @@ function SearchPage({
   }, [showModal])
 
   // Automatically load the next page if "#more" is in the URL
-  React.useEffect(() => {
+  useEffect(() => {
     if (location.hash === "#more") {
       // save state so we can fetch it when the first page got fetched to retrieve the cursor
       shouldLoadNextPage.current = true
@@ -212,7 +209,7 @@ function SearchPage({
         >
           {isFetching ? (
             <p className={progressStyle}>
-              <Spinner aria-valuetext="Searching" /> Searching
+              <Progress aria-valuetext="Searching" /> Searching
               {filters.term ? ` for "${filters.term}"…` : `…`}
             </p>
           ) : (
@@ -265,10 +262,10 @@ function SearchPage({
 }
 
 function SearchBar({ defaultTerm, setFilters }) {
-  const [term, setTerm] = React.useState(defaultTerm)
+  const [term, setTerm] = useState(defaultTerm)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedSetFilters = React.useCallback(
+  const debouncedSetFilters = useCallback(
     debounce((value) => {
       setFilters((filters) => ({ ...filters, term: value }))
     }, 200),
@@ -337,4 +334,4 @@ export default function SearchPageTemplate(props) {
   )
 }
 
-export const Head = () => <Seo/>
+export const Head = () => <Seo />
