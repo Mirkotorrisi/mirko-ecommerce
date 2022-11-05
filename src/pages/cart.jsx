@@ -4,7 +4,7 @@ import { Layout, LineItem } from "../components"
 import { StoreContext } from "../context/store-context"
 import { formatPrice } from "../utils/format-price"
 import "./cart.scss"
-import { Seo } from "../components/seo"
+import { Seo } from "../components/Seo"
 
 export default function CartPage() {
   const { checkout, loading } = useContext(StoreContext)
