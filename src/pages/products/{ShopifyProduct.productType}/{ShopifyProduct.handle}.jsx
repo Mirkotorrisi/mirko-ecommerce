@@ -6,25 +6,7 @@ import { GatsbyImage, getSrc } from "gatsby-plugin-image"
 import { StoreContext } from "../../../context/store-context"
 import { formatPrice } from "../../../utils/format-price"
 import { CgChevronRight as ChevronIcon } from "react-icons/cg"
-import {
-  productBox,
-  container,
-  header,
-  productImageWrapper,
-  productImageList,
-  productImageListItem,
-  scrollForMore,
-  noImagePreview,
-  optionsWrapper,
-  priceValue,
-  selectVariant,
-  labelFont,
-  breadcrumb,
-  tagList,
-  addToCartStyle,
-  metaSection,
-  productDescription,
-} from "./product-page.module.css"
+import "./index.scss"
 
 export default function Product({ data: { product, suggestions } }) {
   const {
@@ -98,20 +80,23 @@ export default function Product({ data: { product, suggestions } }) {
 
   return (
     <Layout>
-      <div className={container}>
-        <div className={productBox}>
+      <div className="p-20">
+        <div className="grid grid-cols-2 gap-5">
           {hasImages && (
-            <div className={productImageWrapper}>
+            <div className="product__image">
+              <div className="hero__decoration mr-auto left"></div>
+              <div className="hero__decoration2 mr-auto left"></div>
+              <div className="hero__decoration3 mr-auto left"></div>
               <div
                 role="group"
                 aria-label="gallery"
                 aria-describedby="instructions"
               >
-                <ul className={productImageList}>
+                <ul className="flex overflow-x-auto max-h-96">
                   {images.map((image, index) => (
                     <li
                       key={`product-image-${image.id}`}
-                      className={productImageListItem}
+                      className="flex whitespace-nowrap "
                     >
                       <GatsbyImage
                         objectFit="contain"
@@ -128,7 +113,10 @@ export default function Product({ data: { product, suggestions } }) {
                 </ul>
               </div>
               {hasMultipleImages && (
-                <div className={scrollForMore} id="instructions">
+                <div
+                  className="hidden mt-5 text-center absolute "
+                  id="instructions"
+                >
                   <span aria-hidden="true">←</span> scroll for more{" "}
                   <span aria-hidden="true">→</span>
                 </div>
@@ -136,22 +124,24 @@ export default function Product({ data: { product, suggestions } }) {
             </div>
           )}
           {!hasImages && (
-            <span className={noImagePreview}>No Preview image</span>
+            <span className="flex items-center justify-center">
+              No Preview image
+            </span>
           )}
-          <div>
-            <div className={breadcrumb}>
+          <div className="flex flex-col">
+            <div className="product__breadcrumb flex items-center">
               <Link to={product.productTypeSlug}>{product.productType}</Link>
               <ChevronIcon size={12} />
             </div>
-            <h1 className={header}>{title}</h1>
-            <p className={productDescription}>{description}</p>
-            <h2 className={priceValue}>
+            <h1 className="product__name">{title}</h1>
+            <p className="product__description">{description}</p>
+            <h2 className="product__price">
               <span>{price}</span>
             </h2>
-            <fieldset className={optionsWrapper}>
+            <fieldset className="flex">
               {hasVariants &&
                 options.map(({ id, name, values }, index) => (
-                  <div className={selectVariant} key={id}>
+                  <div className="flex" key={id}>
                     <select
                       aria-label="Variants"
                       onChange={(event) => handleOptionChange(index, event)}
@@ -166,7 +156,7 @@ export default function Product({ data: { product, suggestions } }) {
                   </div>
                 ))}
             </fieldset>
-            <div className={addToCartStyle}>
+            <div className="flex gap-10 items-center">
               <NumericInput
                 aria-label="Quantity"
                 onIncrement={() => setQuantity((q) => Math.min(q + 1, 20))}
@@ -182,17 +172,17 @@ export default function Product({ data: { product, suggestions } }) {
                 available={available}
               />
             </div>
-            <div className={metaSection}>
-              <span className={labelFont}>Type</span>
-              <span className={tagList}>
+            <div className="grid product__meta mt-auto">
+              <span className="px-2 ">Type</span>
+              <div className="product__tags px-2">
                 <Link to={product.productTypeSlug}>{product.productType}</Link>
-              </span>
-              <span className={labelFont}>Tags</span>
-              <span className={tagList}>
+              </div>
+              <span className="px-2 ">Tags</span>
+              <div className="product__tags px-2 flex gap-2">
                 {product.tags.map((tag) => (
                   <Link to={`/search?t=${tag}`}>{tag}</Link>
                 ))}
-              </span>
+              </div>
             </div>
           </div>
         </div>

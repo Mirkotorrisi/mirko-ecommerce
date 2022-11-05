@@ -1,8 +1,67 @@
-.productCardStyle {
-  max-width: 400px;
+.product-card {
+  max-width: 22.5rem;
+  background-color: var(--primary_blue);
+  height: 22.5rem;
   cursor: pointer;
   text-decoration: none;
   padding-bottom: var(--space-md);
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 10px 0px var(--grey-50);
+  -moz-box-shadow: 5px 5px 10px 0px var(--grey-50);
+  -o-box-shadow: 5px 5px 10px 0px var(--grey-50);
+  box-shadow: 5px 5px 10px 0px var(--grey-50);
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+
+  &__image {
+    max-width: 20rem;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+    background: var(--black);
+    background: -moz-radial-gradient(
+      circle,
+      rgba(34, 34, 34, 1) 78%,
+      var(--primary_blue) 84%,
+      rgba(0, 0, 0, 1) 100%,
+      var(--primary_blue) 100%
+    );
+    background: -webkit-radial-gradient(
+      circle,
+      rgba(34, 34, 34, 1) 78%,
+      var(--primary_blue) 84%,
+      rgba(0, 0, 0, 1) 100%,
+      var(--primary_blue) 100%
+    );
+    background: radial-gradient(
+      circle,
+      rgba(34, 34, 34, 1) 78%,
+      var(--primary_blue) 84%,
+      rgba(0, 0, 0, 1) 100%,
+      var(--primary_blue) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#222222",endColorstr="#ff0071",GradientType=1);
+  }
+  img {
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+  }
+  &__vendor {
+    color: var(--white);
+    font-weight: 700;
+  }
+  &__price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+  &:hover {
+    box-shadow: none;
+    img {
+      scale: 1.5;
+      -webkit-transform: scale(1.5) rotate(20.01deg) !important;
+      transform: scale(1.5) rotate(20.01deg) !important;
+    }
+  }
 }
 
 .productImageStyle {

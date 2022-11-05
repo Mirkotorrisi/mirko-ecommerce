@@ -1,39 +1,41 @@
-.title {
-  font-size: var(--text-2xl);
-  font-weight: var(--semibold);
-  line-height: var(--solid);
-  padding-bottom: var(--space-md);
-}
+.item {
+  &__image {
+    border-radius: 8px;
+    background: var(--black);
+    background: -moz-radial-gradient(
+      circle,
+      var(--black) 7%,
+      var(--primary_blue) 58%,
+      var(--black) 15%
+    );
+    background: -webkit-radial-gradient(
+      circle,
+      var(--black) 7%,
+      var(--primary_blue) 58%,
+      var(--black) 15%
+    );
+    background: radial-gradient(
+      circle,
+      var(--black) 7%,
+      var(--primary_blue) 58%,
+      var(--black) 15%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#222222",endColorstr="#ff0071",GradientType=1);
 
-.variant {
-  font-size: var(--text-md);
-  text-transform: capitalize;
-  padding-bottom: var(--space-sm);
-}
+    img {
+      border-radius: 8px;
+    }
+  }
+  &__title {
+    color: var(--primary_blue);
+    font-weight: 500;
+    text-align: center;
+  }
+  &__price,
+  &__total,
+  &__remove {
+    text-align: center;
 
-.remove button {
-  font-size: var(--text-md);
-
-  display: inline-flex;
-  align-items: center;
-}
-
-.remove button svg {
-  margin-right: var(--space-md);
-}
-
-.totals {
-  text-align: right;
-}
-
-.priceColumn,
-.totals {
-  display: none;
-}
-
-@media (min-width: 640px) {
-  .priceColumn,
-  .totals {
-    display: block;
+    color: var(--white);
   }
 }

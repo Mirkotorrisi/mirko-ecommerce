@@ -9,10 +9,12 @@
   --black-fade-40: rgba(0, 0, 0, 0.4);
   --grey-90: #232129;
   --grey-50: #78757a;
+  --grey-25: #c9c8c9;
   --green-80: #088413;
   --green-50-rgb: 55, 182, 53;
-  --white: #ffffff;
-
+  --black: #303031;
+  --white: #eeeeee;
+  --primary_blue: #d870ce;
   /* radii */
   --radius-sm: 4px;
   --radius-md: 8px;

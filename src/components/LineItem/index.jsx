@@ -6,6 +6,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { getShopifyImage } from "gatsby-source-shopify"
 import DeleteIcon from "../../icons/delete"
 import { NumericInput } from "../NumericInput"
+import "./index.scss"
 
 export function LineItem({ item }) {
   const { removeLineItem, checkout, updateLineItem, loading } =
@@ -69,8 +70,8 @@ export function LineItem({ item }) {
   )
 
   return (
-    <tr>
-      <td>
+    <tr className="flex items-center p-5">
+      <td className="item__image">
         {image && (
           <GatsbyImage
             key={variantImage.src}
@@ -80,17 +81,12 @@ export function LineItem({ item }) {
         )}
       </td>
       <td>
-        <h2 className="">{item.title}</h2>
-        <div className="">
+        <h2 className="item__title">{item.title}</h2>
+        <div className="item__variant">
           {item.variant.title === "Default Title" ? "" : item.variant.title}
         </div>
-        <div className="">
-          <button onClick={handleRemove}>
-            <DeleteIcon /> Remove
-          </button>
-        </div>
       </td>
-      <td className="">{price}</td>
+      <td className="item__price">{price}</td>
       <td>
         <NumericInput
           disabled={loading}
@@ -101,7 +97,15 @@ export function LineItem({ item }) {
           onChange={(e) => handleQuantityChange(e.currentTarget.value)}
         />
       </td>
-      <td className="">{subtotal}</td>
+      <td className="item__total">{subtotal}</td>
+      <td className="ml-auto">
+        {" "}
+        <div className="item__remove">
+          <button onClick={handleRemove} className="flex">
+            <DeleteIcon /> Rimuovi
+          </button>
+        </div>
+      </td>
     </tr>
   )
 }

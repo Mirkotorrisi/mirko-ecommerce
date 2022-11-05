@@ -14,9 +14,9 @@ export function Navigation({ className }) {
   `)
 
   return (
-    <nav className="">
+    <nav className="flex gap-4">
       <Link key="All" className="" to="/products/" activeClassName="">
-        All products
+        Tutti i prodotti
       </Link>
       {productTypes.map((name) => (
         <Link

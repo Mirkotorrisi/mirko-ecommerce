@@ -1,0 +1,79 @@
+.hero {
+  background: var(--black);
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    & h1 {
+      font-size: 100px;
+      color: #ffffff;
+      width: 70%;
+      z-index: 100;
+      text-shadow: 2px 2px 2px black;
+    }
+
+    font-weight: 900;
+  }
+  &__video {
+    object-fit: cover;
+    width: 100%;
+    z-index: 2;
+
+    &__container {
+      clip-path: polygon(15% 79%, 0% 0%, 77% 21%, 55% 80%);
+      width: 50%;
+      height: 50%;
+    }
+  }
+  &__decoration,
+  &__decoration2,
+  &__decoration3 {
+    clip-path: polygon(15% 79%, 0% 0%, 77% 21%, 55% 80%);
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    background: var(--primary_blue);
+    &2 {
+      background: rgb(2, 0, 36);
+      background: radial-gradient(
+        circle,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(9, 9, 121, 0) 96%,
+        rgb(132, 0, 255) 99%
+      );
+      transform: translate3d(15px, 15px, 50px);
+    }
+    &3 {
+      background: rgb(255, 0, 113);
+      background: -moz-radial-gradient(
+        circle,
+        rgba(255, 0, 113, 1) 0%,
+        rgba(30, 251, 247, 0) 49%,
+        rgba(0, 0, 0, 0.507) 66%,
+        rgba(9, 9, 121, 0) 96%
+      );
+      background: -webkit-radial-gradient(
+        circle,
+        rgba(255, 0, 113, 1) 0%,
+        rgba(30, 251, 247, 0) 49%,
+        rgba(0, 0, 0, 1) 66%,
+        rgba(9, 9, 121, 0) 96%
+      );
+      background: radial-gradient(
+        circle,
+        rgba(255, 0, 113, 1) 0%,
+        rgba(30, 251, 247, 0) 49%,
+        rgba(0, 0, 0, 1) 66%,
+        rgba(9, 9, 121, 0) 96%
+      );
+      transform: translate3d(30px, 30px, 100px);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff0071",endColorstr="#090979",GradientType=1);
+    }
+  }
+}
+.title {
+  color: var(--primary_blue);
+  font-size: 2.5rem;
+  font-weight: 900;
+}

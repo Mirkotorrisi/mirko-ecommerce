@@ -1,5 +1,6 @@
 import * as React from "react"
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md"
+import "./index.scss"
 export function NumericInput({
   onIncrement,
   onDecrement,
@@ -8,25 +9,30 @@ export function NumericInput({
   ...props
 }) {
   return (
-    <div className="">
-      <input disabled={disabled} type="numeric" className="" {...props} />
+    <div className="numeric flex items-center justify-center flex-col">
       <button
         disabled={disabled}
-        className=""
+        className="numeric__button"
         aria-label="Increment"
         onClick={onIncrement}
       >
         <span>+</span>
         <MdArrowDropUp />
       </button>
+      <input
+        disabled={disabled}
+        type="numeric"
+        className="numeric__input text-center"
+        {...props}
+      />
       <button
         disabled={disabled}
-        className=""
+        className="numeric__button"
         aria-label="Decrement"
         onClick={onDecrement}
       >
-        <span>-</span>
         <MdArrowDropDown />
+        <span>-</span>
       </button>
     </div>
   )

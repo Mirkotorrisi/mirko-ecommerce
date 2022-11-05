@@ -3,22 +3,7 @@ import { Link } from "gatsby"
 import { Layout, LineItem } from "../components"
 import { StoreContext } from "../context/store-context"
 import { formatPrice } from "../utils/format-price"
-import {
-  table,
-  wrap,
-  totals,
-  grandTotal,
-  summary,
-  checkoutButton,
-  collapseColumn,
-  labelColumn,
-  imageHeader,
-  productHeader,
-  emptyStateContainer,
-  emptyStateHeading,
-  emptyStateLink,
-  title,
-} from "./cart.module.css"
+import "./cart.scss"
 import { Seo } from "../components/seo"
 
 export default function CartPage() {
@@ -31,88 +16,99 @@ export default function CartPage() {
 
   return (
     <Layout>
-      <div className={wrap}>
+      <div className="px-10 py-20">
         {emptyCart ? (
-          <div className={emptyStateContainer}>
-            <h1 className={emptyStateHeading}>Your cart is empty</h1>
-            <p>
-              Looks like you haven’t found anything yet. We understand that
-              sometimes it’s hard to choose — maybe this helps:
-            </p>
-            <Link to="/search?s=BEST_SELLING" className={emptyStateLink}>
-              View trending products
+          <div className="empty">
+            <h1 className="empty__title">Il tuo carrello è vuoto</h1>
+            <p>Che aspetti??? Procurati il tuo enzino...</p>
+            <Link to="/search?s=BEST_SELLING" className="empty__link">
+              Guarda gli enzini di tendenza
             </Link>
           </div>
         ) : (
           <>
-            <h1 className={title}>Your cart</h1>
-            <table className={table}>
+            <h1 className="title">Il tuo carrello</h1>
+            <table className="cart__table w-full flex flex-col">
               <thead>
-                <tr>
-                  <th className={imageHeader}>Image</th>
-                  <th className={productHeader}>Product</th>
-                  <th className={collapseColumn}>Price</th>
-                  <th>Qty.</th>
-                  <th className={[totals, collapseColumn].join(" ")}>Total</th>
+                <tr className="w-full flex justify-between p-5">
+                  <th></th>
+                  <th>Prodotto</th>
+                  <th>Prezzo</th>
+                  <th>Quantità</th>
+                  <th>Totale</th>
+                  <th></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="w-full pb-5">
                 {checkout.lineItems.map((item) => (
                   <LineItem item={item} key={item.id} />
                 ))}
 
-                <tr className={summary}>
-                  <td className={collapseColumn}></td>
-                  <td className={collapseColumn}></td>
-                  <td className={collapseColumn}></td>
-                  <td className={labelColumn}>Subtotal</td>
-                  <td className={totals}>
+                <tr className="w-full flex justify-between bottom-line">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Subtotale</td>
+                  <td>
                     {formatPrice(
                       checkout.subtotalPriceV2.currencyCode,
                       checkout.subtotalPriceV2.amount
                     )}
                   </td>
                 </tr>
-                <tr className={summary}>
-                  <td className={collapseColumn}></td>
-                  <td className={collapseColumn}></td>
-                  <td className={collapseColumn}></td>
-                  <td className={labelColumn}>Taxes</td>
-                  <td className={totals}>
+                <tr className="w-full flex justify-between ">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Iva</td>
+                  <td>
                     {formatPrice(
                       checkout.totalTaxV2.currencyCode,
                       checkout.totalTaxV2.amount
                     )}
                   </td>
                 </tr>
-                <tr className={summary}>
-                  <td className={collapseColumn}></td>
-                  <td className={collapseColumn}></td>
-                  <td className={collapseColumn}></td>
-                  <td className={labelColumn}>Shipping</td>
-                  <td className={totals}>Calculated at checkout</td>
+                <tr className="w-full flex justify-between ">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Spedizione</td>
+                  <td>Calcolata al checkout</td>
                 </tr>
-                <tr className={grandTotal}>
-                  <td className={collapseColumn}></td>
-                  <td className={collapseColumn}></td>
-                  <td className={collapseColumn}></td>
-                  <td className={labelColumn}>Total Price</td>
-                  <td className={totals}>
+                <tr className="w-full flex justify-between ">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td className="flex items-center">Totale</td>
+                  <td className="total">
                     {formatPrice(
                       checkout.totalPriceV2.currencyCode,
                       checkout.totalPriceV2.amount
                     )}
                   </td>
                 </tr>
+                <tr className="w-full flex justify-between ">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td className="total pt-5">
+                    <button
+                      onClick={handleCheckout}
+                      disabled={loading}
+                      className="checkout-button px-5 py-2"
+                    >
+                      Vai al Checkout
+                    </button>
+                  </td>
+                  <td></td>
+                </tr>
               </tbody>
             </table>
-            <button
-              onClick={handleCheckout}
-              disabled={loading}
-              className={checkoutButton}
-            >
-              Checkout
-            </button>
           </>
         )}
       </div>

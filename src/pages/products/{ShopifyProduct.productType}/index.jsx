@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import { Layout, ProductListing, Seo, MoreButton } from "../../../components"
 import slugify from "@sindresorhus/slugify"
-import { title } from "../index.module.css"
+import "./index.scss"
 
 export default function ProductTypeIndex({
   data: { products },
@@ -10,7 +10,7 @@ export default function ProductTypeIndex({
 }) {
   return (
     <Layout>
-      <h1 className={title}>{productType}</h1>
+      <h1 className="title text-center mt-10">{productType}</h1>
       <ProductListing products={products.nodes} />
       {products.pageInfo.hasNextPage && (
         <MoreButton to={`/search?p=${slugify(productType)}#more`}>

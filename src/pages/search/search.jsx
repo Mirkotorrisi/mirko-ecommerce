@@ -3,15 +3,15 @@ import { graphql } from "gatsby"
 import slugify from "@sindresorhus/slugify"
 import debounce from "debounce"
 import { CgChevronRight, CgChevronLeft } from "react-icons/cg"
-import CrossIcon from "../icons/cross"
-import SortIcon from "../icons/sort"
-import FilterIcon from "../icons/filter"
-import SearchIcon from "../icons/search"
-import { ProductCard, Progress, Filters, Layout } from "../components"
-import { useProductSearch } from "../utils/hooks"
-import { getValuesFromQuery } from "../utils/search"
-import { getCurrencySymbol } from "../utils/format-price"
-import { SearchProvider } from "../context/search-provider"
+import CrossIcon from "../../icons/cross"
+import SortIcon from "../../icons/sort"
+import FilterIcon from "../../icons/filter"
+import SearchIcon from "../../icons/search"
+import { ProductCard, Progress, Filters, Layout } from "../../components"
+import { useProductSearch } from "../../utils/hooks"
+import { getValuesFromQuery } from "../../utils/search"
+import { getCurrencySymbol } from "../../utils/format-price"
+import { SearchProvider } from "../../context/search-provider"
 import {
   visuallyHidden,
   main,
@@ -36,12 +36,12 @@ import {
   filterWrap,
   emptyState,
 } from "./search-page.module.css"
-import { Seo } from "../components/seo"
+import { Seo } from "../../components/seo"
 
 const DEFAULT_PRODUCTS_PER_PAGE = 24
 
 export async function getServerData({ query, ...rest }) {
-  const { getSearchResults } = require("../utils/search")
+  const { getSearchResults } = require("../../utils/search")
   const products = await getSearchResults({
     query,
     count: DEFAULT_PRODUCTS_PER_PAGE,

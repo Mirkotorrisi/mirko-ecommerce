@@ -1,13 +1,8 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { Layout, ProductListing, Seo } from "../components"
-import {
-  container,
-  intro,
-  callOut,
-  callToAction,
-  deployButton,
-} from "./index.module.css"
+import herovideo from "../../static/herovideo.mp4"
+import "./index.scss"
 
 export const query = graphql`
   query {
@@ -20,28 +15,17 @@ export const query = graphql`
 `
 function Hero(props) {
   return (
-    <div className={container}>
-      <h1 className={intro}>Welcome to the GatsbyJS + Shopify Demo Store.</h1>
-      {!!process.env.GATSBY_DEMO_STORE && (
-        <>
-          <p className={callOut}>
-            It's a proof-of-concept in a box, with 10k products and 30k variants
-            to help you get to proof-of-concept as soon as right now.
-          </p>
-          <p className={callToAction}>
-            Hook it up to your own Shopify store data and start customizing in
-            minutes by deploying it to Gatsby Cloud for free. Grab your Shopify
-            store credentials and
-            <a href="https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-shopify&utm_campaign=shopify-starter">
-              <img
-                src="https://www.gatsbyjs.com/deploynow.png"
-                alt="Deploy to Gatsby Cloud"
-                className={deployButton}
-              />
-            </a>
-          </p>
-        </>
-      )}
+    <div className="hero flex">
+      <div className="hero__decoration ml-auto right-0"></div>
+      <div className="hero__video__container ml-auto mt-24 mr-24">
+        <video loop autoPlay muted className="hero__video ">
+          <source src={herovideo} type="video/mp4" />
+        </video>
+      </div>
+      <div className="hero__overlay flex pt-24 px-10 ">
+        <h1 className="hero__title">Your Iacchetti, your style. </h1>
+      </div>
+      <div className="hero__decoration2 ml-auto right-0"></div>
     </div>
   )
 }
@@ -50,6 +34,7 @@ export default function IndexPage({ data }) {
   return (
     <Layout>
       <Hero />
+      <h2 className="title text-center mt-5 w-full">Scelti per te</h2>
       <ProductListing products={data?.shopifyCollection?.products} />
     </Layout>
   )

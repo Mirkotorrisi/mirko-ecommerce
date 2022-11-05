@@ -5,7 +5,6 @@ import { Header, Footer } from ".."
 export function Layout({ children }) {
   return (
     <div>
-      <SkipNavLink />
       <Header />
       <SkipNavContent>{children}</SkipNavContent>
       <Footer />

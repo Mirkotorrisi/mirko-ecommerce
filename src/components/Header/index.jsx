@@ -1,10 +1,10 @@
 import React, { useContext } from "react"
 import { Link } from "gatsby"
 import { StoreContext } from "../../context/store-context"
-import Logo from "../../icons/logo"
+import ezioFace from "../../../static/faviconEzio.png"
 import { Navigation, CartButton, Toast } from ".."
 import SearchIcon from "../../icons/search"
-
+import "./index.scss"
 export function Header() {
   const { checkout, loading, didJustAddToCart } = useContext(StoreContext)
 
@@ -16,15 +16,17 @@ export function Header() {
 
   return (
     <div className="">
-      <header className="">
+      <header className="navbar flex fixed top-0 items-center justify-between flex-wrap w-full py-4 lg:py-0 px-10 ">
         <Link to="/" className="">
-          <Logo />
+          <img src={ezioFace} alt="logo" />
         </Link>
         <Navigation className="" />
-        <Link to="/search" className="">
-          <SearchIcon />
-        </Link>
-        <CartButton quantity={quantity} />
+        <div class="flex gap-4">
+          <Link to="/search" className="">
+            <SearchIcon />
+          </Link>
+          <CartButton quantity={quantity} />
+        </div>
       </header>
       <Toast show={loading || didJustAddToCart}>
         {!didJustAddToCart ? (
